@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    tools:context=".MainActivity"
+    android:padding="5dp"
     android:paddingTop="?attr/actionBarSize">
 
     <LinearLayout
@@ -38,7 +41,7 @@
             android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/book_title"
+            android:text="@string/book_author"
             android:textSize="20sp" />
 
         <EditText
@@ -59,7 +62,7 @@
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/book_title"
+            android:text="@string/book_publisher"
             android:textSize="20sp" />
 
         <EditText
@@ -72,10 +75,10 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btAdd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Button" />
+        android:text="@string/add" />
 
 </LinearLayout>
 
