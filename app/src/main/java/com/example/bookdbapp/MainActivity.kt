@@ -1,8 +1,10 @@
 package com.example.bookdbapp
 
 import android.os.Bundle
+import android.widget.Toast
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.ViewDataBinding
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -12,6 +14,7 @@ import com.example.bookdbapp.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var dataBinding:ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val navView: BottomNavigationView = binding.navView
+        /*val navView: BottomNavigationView = binding.navView
 
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
         // Passing each menu ID as a set of Ids because each
@@ -30,6 +33,11 @@ class MainActivity : AppCompatActivity() {
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
-        navView.setupWithNavController(navController)
+        navView.setupWithNavController(navController)*/
+        dataBinding.btAdd.setOnClickListener {
+            Toast.makeText(this,
+                "${dataBinding.edtitle.text.toString()},${dataBinding.edauthor.text.toString()},${dataBinding.edpublisher.text.toString()}",
+                Toast.LENGTH_LONG).show()
+        }
     }
 }
