@@ -9,15 +9,15 @@
     <LinearLayout
         android:id="@+id/main"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".MainActivity"
         android:padding="5dp"
-        android:paddingTop="?attr/actionBarSize">
+        android:paddingTop="?attr/actionBarSize"
+        tools:context=".MainActivity">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="5dp">
 
@@ -32,15 +32,16 @@
                 android:id="@+id/edtitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:inputType="text" />
+                android:contentDescription="NULL"
+                android:inputType="text"
+                android:textSize="24sp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="5dp">
 
             <TextView
                 android:id="@+id/textView1"
@@ -53,15 +54,16 @@
                 android:id="@+id/edauthor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:inputType="text" />
+
+                android:inputType="text"
+                android:textSize="24sp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="5dp">
 
             <TextView
                 android:id="@+id/textView2"
@@ -71,12 +73,12 @@
                 android:textSize="20sp" />
 
             <EditText
-                    android:id="@+id/edpublisher"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:ems="10"
-                    android:inputType="text" />
+                android:id="@+id/edpublisher"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:inputType="text"
+                android:textSize="24sp" />
         </LinearLayout>
 
         <Button
@@ -84,6 +86,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/add" />
+
+        <Button
+            android:id="@+id/btlist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/list" />
 
     </LinearLayout>
 
