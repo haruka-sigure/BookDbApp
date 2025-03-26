@@ -7,15 +7,29 @@ import android.database.sqlite.SQLiteOpenHelper
 import android.widget.Toast
 import java.util.concurrent.Flow.Publisher
 
-const val DB_FILE="book.db"
-const val BOOK_TABLE="books"
-const val ID="id"
-const val BOOK_TITLE="book_title"
-const val BOOK_AUTHOR="book_author"
-const val BOOK_PUBLISHER="book_publisher"
 
-class BookDbHelper (private val context: Context):
+
+class BookDbHelper private constructor( val context: Context):
     SQLiteOpenHelper(context, DB_FILE,null,1){
+
+        companion object{
+            private const val DB_FILE="book.db"
+            private const val BOOK_TABLE="books"
+            private const val ID="id"
+            private const val BOOK_TITLE="book_title"
+            private const val BOOK_AUTHOR="book_author"
+            private const val BOOK_PUBLISHER="book_publisher"
+
+            private var bookDbHelper:BookDbHelper?=null
+
+            fun init(context: Context){
+                if (bookDbHelper==null) bookDbHelper=BookDbHelper(context)
+            }
+
+            fun getInstance():BookDbHelper?{
+                return bookDbHelper
+            }
+        }
     override fun onCreate(db: SQLiteDatabase?) {
         val sqlCreateTable="CREATE TABLE $BOOK_TABLE($ID integer primary key,$BOOK_TITLE nvarcher(30),$BOOK_AUTHOR nvarcher(20),$BOOK_PUBLISHER nvarcher(50));"
         db?.execSQL(sqlCreateTable)

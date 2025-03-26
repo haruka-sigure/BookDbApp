@@ -13,14 +13,13 @@ import com.example.bookdbapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainBinding
     private lateinit var dataBinding:ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        dataBinding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(dataBinding.root)
 
         /*val navView: BottomNavigationView = binding.navView
 
@@ -34,17 +33,18 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)*/
-        val dbHelper=BookDbHelper(this)
+        BookDbHelper.init(this)
+        val dbHelper=BookDbHelper.getInstance()
 
         dataBinding.btAdd.setOnClickListener {
             Toast.makeText(this,
                 "${dataBinding.edtitle.text.toString()},${dataBinding.edauthor.text.toString()},${dataBinding.edpublisher.text.toString()}",
                 Toast.LENGTH_LONG).show()
-            dbHelper.addBook(dataBinding.edtitle.text.toString(),dataBinding.edauthor.text.toString(),
+            dbHelper?.addBook(dataBinding.edtitle.text.toString(),dataBinding.edauthor.text.toString(),
                 dataBinding.edpublisher.text.toString())
         }
         dataBinding.btlist.setOnClickListener {
-            dbHelper.printAllBooks()
+            dbHelper?.printAllBooks()
         }
     }
 }
