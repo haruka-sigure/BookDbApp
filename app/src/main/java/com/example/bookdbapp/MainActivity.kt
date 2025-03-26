@@ -37,14 +37,18 @@ class MainActivity : AppCompatActivity() {
         val dbHelper=BookDbHelper.getInstance()
 
         dataBinding.btAdd.setOnClickListener {
-            Toast.makeText(this,
-                "${dataBinding.edtitle.text.toString()},${dataBinding.edauthor.text.toString()},${dataBinding.edpublisher.text.toString()}",
-                Toast.LENGTH_LONG).show()
-            dbHelper?.addBook(dataBinding.edtitle.text.toString(),dataBinding.edauthor.text.toString(),
+            val book=Book(dataBinding.edtitle.text.toString(),dataBinding.edauthor.text.toString(),
                 dataBinding.edpublisher.text.toString())
+            dbHelper?.addBook(book)
         }
         dataBinding.btlist.setOnClickListener {
-            dbHelper?.printAllBooks()
+            val books=dbHelper?.getAllBooks()
+            books?.let {
+                for (b in books){
+                    Toast.makeText(this,"Book:${b.title},${b.author},${b.publisher}",
+                        Toast.LENGTH_LONG).show()
+                }
+            }
         }
     }
 }

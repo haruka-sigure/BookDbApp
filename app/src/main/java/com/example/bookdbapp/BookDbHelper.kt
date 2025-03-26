@@ -41,11 +41,11 @@ class BookDbHelper private constructor( val context: Context):
             onCreate(db)
         }
     }
-    fun addBook(title: String,author:String,publisher: String){
+    fun addBook(book: Book){
         val cv=ContentValues()
-        cv.put(BOOK_TITLE,title)
-        cv.put(BOOK_AUTHOR,author)
-        cv.put(BOOK_PUBLISHER,publisher)
+        cv.put(BOOK_TITLE,book.title)
+        cv.put(BOOK_AUTHOR,book.author)
+        cv.put(BOOK_PUBLISHER,book.publisher)
 
         /*
         writableDatabase.insert(BOOK_TITLE,title)
@@ -57,16 +57,20 @@ class BookDbHelper private constructor( val context: Context):
         writableDatabase.close()
 
     }
-    fun printAllBooks(){
+    fun getAllBooks():ArrayList<Book>{
         val c=readableDatabase.query(BOOK_TABLE, arrayOf(BOOK_TITLE, BOOK_AUTHOR, BOOK_PUBLISHER),
         null,null,null,null,null)
+
+        val books =arrayListOf<Book>()
+
         if (c.count!=0){
             c.moveToFirst()
             do {
-                Toast.makeText(context,"Book:${c.getString(0)},${c.getString(1)},${c.getString(2)}",
-                    Toast.LENGTH_SHORT).show()
+                val b=Book(c.getString(0),c.getString(1),c.getString(2))
+                books.add(b)
             }while (c.moveToNext())
         }
+        return books
     }
 
 }
