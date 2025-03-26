@@ -47,12 +47,6 @@ class BookDbHelper private constructor( val context: Context):
         cv.put(BOOK_AUTHOR,book.author)
         cv.put(BOOK_PUBLISHER,book.publisher)
 
-        /*
-        writableDatabase.insert(BOOK_TITLE,title)
-        writableDatabase.insert(BOOK_AUTHOR,author)
-        writableDatabase.insert(BOOK_PUBLISHER,publisher)
-        */
-
         writableDatabase.insert(BOOK_TABLE,null,cv)
         writableDatabase.close()
 
