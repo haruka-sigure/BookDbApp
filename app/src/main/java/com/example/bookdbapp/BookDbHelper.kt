@@ -52,7 +52,7 @@ class BookDbHelper private constructor( val context: Context):
 
     }
     fun getAllBooks():ArrayList<Book>{
-        val c=readableDatabase.query(BOOK_TABLE, arrayOf(BOOK_TITLE, BOOK_AUTHOR, BOOK_PUBLISHER),
+        val c=readableDatabase.query(BOOK_TABLE, arrayOf(ID,BOOK_TITLE, BOOK_AUTHOR, BOOK_PUBLISHER),
         null,null,null,null,null)
 
         val books =arrayListOf<Book>()
@@ -60,11 +60,15 @@ class BookDbHelper private constructor( val context: Context):
         if (c.count!=0){
             c.moveToFirst()
             do {
-                val b=Book(c.getString(0),c.getString(1),c.getString(2))
+                val b=Book(c.getInt(0),c.getString(1),c.getString(2),c.getString(3))
                 books.add(b)
             }while (c.moveToNext())
         }
         return books
+    }
+    fun deletbook(id:Int){
+        writableDatabase.delete(BOOK_TABLE,"$ID=?", arrayOf(id.toString()))
+        writableDatabase.close()
     }
 
 }
