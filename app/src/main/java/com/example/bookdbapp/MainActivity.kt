@@ -1,10 +1,14 @@
 package com.example.bookdbapp
 
+import android.app.Dialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -49,12 +53,46 @@ class MainActivity : AppCompatActivity() {
                 val dlg=BottomSheetDialog(it.context,R.style.BottomSheetDlg)
                 dlg.setContentView(R.layout.dig_del_and_update)
                 val btDel=dlg.findViewById<Button>(R.id.btdel)
-                val btupdate=dlg.findViewById<Button>(R.id.btupdate)
+                val btUpdate=dlg.findViewById<Button>(R.id.btupdate)
 
                 btDel?.setOnClickListener {
                     BookDbHelper.getInstance()?.deletbook(book.id)
                     books.removeAt(position)
                     notifyDataSetChanged()
+                    dlg.dismiss()
+                }
+                btUpdate?.setOnClickListener {
+                    val dlgUpdate=Dialog(it.context)
+                    dlgUpdate.setContentView(R.layout.dlg_update_book)
+                    dlgUpdate.setCancelable(false)
+                    dlgUpdate.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                    val ettitle=dlgUpdate.findViewById<EditText>(R.id.edtitle)
+                    val etauthor=dlgUpdate.findViewById<EditText>(R.id.edauthor)
+                    val etpublisher=dlgUpdate.findViewById<EditText>(R.id.edpublisher)
+                    val btok=dlgUpdate.findViewById<Button>(R.id.btok)
+                    val btcancel=dlgUpdate.findViewById<Button>(R.id.btcancel)
+
+                    ettitle.setText(book.title)
+                    etauthor.setText(book.author)
+                    etpublisher.setText(book.publisher)
+
+                    btok?.setOnClickListener {
+                        val newData=Book(
+                            book.id,
+                            ettitle.text.toString(),
+                            etauthor.text.toString(),
+                            etpublisher.text.toString())
+                        BookDbHelper.getInstance()?.updateBook(newData)
+
+                        books.removeAt(position)
+                        books.add(position,newData)
+                        notifyDataSetChanged()
+                        dlgUpdate.dismiss()
+                    }
+                    btcancel?.setOnClickListener {
+                        dlgUpdate.dismiss()
+                    }
+                    dlgUpdate.show()
                     dlg.dismiss()
                 }
                 dlg.show()

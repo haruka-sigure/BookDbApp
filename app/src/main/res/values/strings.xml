@@ -10,4 +10,6 @@
     <string name="list">列表</string>
     <string name="update">修改</string>
     <string name="del">刪除</string>
+    <string name="ok">確定</string>
+    <string name="cancel">取消</string>
 </resources>

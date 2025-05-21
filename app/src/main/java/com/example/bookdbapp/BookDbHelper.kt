@@ -71,4 +71,14 @@ class BookDbHelper private constructor( val context: Context):
         writableDatabase.close()
     }
 
+    fun updateBook(book: Book) {
+        val cv=ContentValues()
+        cv.put(BOOK_TITLE,book.title)
+        cv.put(BOOK_AUTHOR,book.author)
+        cv.put(BOOK_PUBLISHER,book.publisher)
+
+        writableDatabase.update(BOOK_TABLE,cv,"$ID = ?", arrayOf(book.id.toString()))
+        writableDatabase.close()
+    }
+
 }
