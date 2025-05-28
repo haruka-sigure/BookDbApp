@@ -77,16 +77,18 @@
             android:id="@+id/btok"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="3dp"
             android:layout_weight="1"
             android:text="@string/ok"
-            android:layout_margin="3dp"/>
+            android:textColor="@color/teal_200" />
 
         <Button
             android:id="@+id/btcancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="3dp"
             android:layout_weight="1"
             android:text="@string/cancel"
-            android:layout_margin="3dp"/>
+            android:textColor="@color/design_default_color_error" />
     </LinearLayout>
 </LinearLayout>

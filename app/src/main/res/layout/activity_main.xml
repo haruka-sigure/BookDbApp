@@ -81,17 +81,38 @@
                 android:textSize="24sp" />
         </LinearLayout>
 
-        <Button
-            android:id="@+id/btAdd"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/add" />
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/btlist"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/list" />
+            <Button
+                android:id="@+id/btAdd"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="@string/add"
+                android:textSize="16sp"
+                android:layout_marginHorizontal="5dp"/>
+
+            <Button
+                android:id="@+id/btlist"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="@string/list"
+                android:textSize="16sp"
+                android:layout_marginHorizontal="5dp"/>
+
+            <Button
+                android:id="@+id/btquery"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp"
+                android:layout_weight="1"
+                android:textSize="16sp"
+                android:text="@string/query" />
+        </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvBooklist"

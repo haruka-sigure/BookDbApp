@@ -148,5 +148,18 @@ class MainActivity : AppCompatActivity() {
                 bookRecyclerViewAdapter.notifyDataSetChanged()
                 }
             }
+
+        dataBinding.btquery.setOnClickListener {
+            val book=Book(
+                -1,dataBinding.edtitle.text.toString(),dataBinding.edauthor.text.toString(),
+                dataBinding.edpublisher.text.toString())
+
+            bookList.clear()
+            val books=dbHelper?.queryBooks(book)
+            books?.let {
+                bookList.addAll(books)
+                bookRecyclerViewAdapter.notifyDataSetChanged()
+            }
+        }
         }
     }

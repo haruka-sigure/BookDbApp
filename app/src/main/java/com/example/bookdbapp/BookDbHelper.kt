@@ -81,4 +81,46 @@ class BookDbHelper private constructor( val context: Context):
         writableDatabase.close()
     }
 
+    fun queryBooks(book: Book):ArrayList<Book>{
+        var conditionExit=false
+        var selection=""
+
+        if (book.title.isNotEmpty()){
+            selection="$BOOK_TITLE='${book.title}'"
+            conditionExit=true
+        }
+        if (book.author.isNotEmpty()){
+            if (!conditionExit){
+                selection="$BOOK_AUTHOR='${book.author}'"
+                conditionExit=true
+            }
+            else{
+                selection="$selection AND $BOOK_AUTHOR='${book.author}'"
+            }
+        }
+        if (book.publisher.isNotEmpty()){
+            if (!conditionExit){
+                selection="$BOOK_PUBLISHER='${book.publisher}'"
+                conditionExit=true
+            }
+            else{
+                selection="$selection AND $BOOK_PUBLISHER='${book.publisher}'"
+            }
+        }
+
+        val c=readableDatabase.query(BOOK_TABLE, arrayOf(ID,BOOK_TITLE, BOOK_AUTHOR, BOOK_PUBLISHER),
+            selection,null,null,null,null)
+
+        val books =arrayListOf<Book>()
+
+        if (c.count!=0){
+            c.moveToFirst()
+            do {
+                val b=Book(c.getInt(0),c.getString(1),c.getString(2),c.getString(3))
+                books.add(b)
+            }while (c.moveToNext())
+        }
+        return books
+    }
+
 }

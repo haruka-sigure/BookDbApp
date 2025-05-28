@@ -12,4 +12,5 @@
     <string name="del">刪除</string>
     <string name="ok">確定</string>
     <string name="cancel">取消</string>
+    <string name="query">查詢</string>
 </resources>
