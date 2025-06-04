@@ -134,6 +134,13 @@ class MainActivity : AppCompatActivity() {
         BookDbHelper.init(this)
         val dbHelper=BookDbHelper.getInstance()
 
+        dbHelper?.addAuthor("aaa")
+        dbHelper?.addAuthor("bbb")
+        dbHelper?.addAuthor("ccc")
+        dbHelper?.addPublisher("xxx")
+        dbHelper?.addPublisher("yyy")
+        dbHelper?.addPublisher("zzz")
+
         dataBinding.btAdd.setOnClickListener {
             val book=Book(
                 -1,dataBinding.edtitle.text.toString(),dataBinding.edauthor.text.toString(),
